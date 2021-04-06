@@ -31,6 +31,7 @@
             android:layout_marginTop="@dimen/margin_30">
 
             <TextView
+                android:id="@+id/locationLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_15"
@@ -38,6 +39,18 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_24"
                 android:textStyle="bold" />
+
+            <ProgressBar
+                android:id="@+id/progress"
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/margin_10"
+                android:layout_marginTop="@dimen/margin_5"
+                android:layout_toEndOf="@id/locationLabel"
+                android:elevation="10dp"
+                android:indeterminateTint="@color/white"
+                android:visibility="visible" />
 
             <TextView
                 android:id="@+id/addNewButton"
@@ -57,16 +70,48 @@
                 android:layout_marginTop="@dimen/margin_10"
                 android:layoutAnimation="@anim/item_slide" />
 
+            <RelativeLayout
+                android:visibility="gone"
+                android:id="@+id/retryHolder"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/list_height"
+                android:layout_below="@id/addNewButton"
+                android:layout_marginTop="@dimen/margin_10">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="@dimen/margin_30"
+                    android:layout_marginTop="@dimen/margin_15"
+                    android:layout_marginEnd="@dimen/margin_30"
+                    android:text="@string/fetching_data_error"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_18" />
+
+                <Button
+                    android:id="@+id/retryButton"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/edit_text_background"
+                    android:text="@string/retry"
+                    android:textColor="@color/colorPrimaryDark" />
+            </RelativeLayout>
+
             <TextView
                 android:id="@+id/deleteInstructionText"
-                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/mainListView"
                 android:layout_marginStart="@dimen/margin_15"
                 android:text="@string/delete_instructions"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text_size_12" />
+                android:textSize="@dimen/text_size_12"
+                android:visibility="gone" />
         </RelativeLayout>
     </LinearLayout>
 
@@ -75,15 +120,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/primary_trans_65"
-        android:visibility="gone" />
-
-    <ProgressBar
-        android:id="@+id/progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:elevation="10dp"
-        android:indeterminateTint="@color/white"
         android:visibility="gone" />
 
     <include layout="@layout/input_form" />

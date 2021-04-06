@@ -16,6 +16,7 @@
     <string name="error_message">Something went wrong</string>
     <string name="error_field_missing_message">Required field is missing</string>
     <string name="server_error_message">Server error</string>
+    <string name="fetching_data_error">An error occurred while loading data from server.</string>
 
     <string name="retry">Retry</string>
     <string name="cancel">Cancel</string>

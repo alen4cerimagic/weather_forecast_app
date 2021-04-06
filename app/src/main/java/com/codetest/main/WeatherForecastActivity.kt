@@ -54,11 +54,8 @@ class WeatherForecastActivity : AppCompatActivity(), WeatherAdapter.OnWeatherCli
             mainListView.scheduleLayoutAnimation()
             deleteInstructionText.visibility = View.VISIBLE
         }, {
+            retryHolder.visibility = View.VISIBLE
             showProgress(false)
-            Snackbar.make(root, resources.getString(it), Snackbar.LENGTH_INDEFINITE)
-                .setAction(R.string.retry) {
-                    fetchLocations()
-                }.show()
         })
     }
 
@@ -70,10 +67,7 @@ class WeatherForecastActivity : AppCompatActivity(), WeatherAdapter.OnWeatherCli
             mainListView.smoothScrollToPosition(locationAdapter.getLastPosition())
         }, {
             showProgress(false)
-            Snackbar.make(root, resources.getString(it), Snackbar.LENGTH_LONG)
-                .setAction(R.string.retry) {
-                    addLocation(location)
-                }.show()
+            Snackbar.make(root, resources.getString(it), Snackbar.LENGTH_LONG).show()
         })
     }
 
@@ -84,10 +78,7 @@ class WeatherForecastActivity : AppCompatActivity(), WeatherAdapter.OnWeatherCli
             locationAdapter.deleteLocation(position)
         }, {
             showProgress(false)
-            Snackbar.make(root, resources.getString(it), Snackbar.LENGTH_LONG)
-                .setAction(R.string.retry) {
-                    deleteLocation(id, position)
-                }.show()
+            Snackbar.make(root, resources.getString(it), Snackbar.LENGTH_LONG).show()
         })
     }
     //endregion
@@ -150,13 +141,16 @@ class WeatherForecastActivity : AppCompatActivity(), WeatherAdapter.OnWeatherCli
     }
 
     private fun setClickListeners() {
+        retryButton.setOnClickListener {
+            fetchLocations()
+            retryHolder.visibility = View.GONE
+        }
+
         addNewButton.setOnClickListener {
             inputFormBehavior.state = BottomSheetBehavior.STATE_EXPANDED
         }
 
         addLocationButton.setOnClickListener {
-            inputFormBehavior.state = BottomSheetBehavior.STATE_HIDDEN
-
             val cityName = cityInput.text?.toString()
             val temperature = tempInput.text.toString()
 
@@ -164,9 +158,10 @@ class WeatherForecastActivity : AppCompatActivity(), WeatherAdapter.OnWeatherCli
                 Snackbar.make(
                     root,
                     resources.getString(R.string.error_field_missing_message),
-                    Snackbar.LENGTH_INDEFINITE
+                    Snackbar.LENGTH_SHORT
                 ).show()
             else {
+                inputFormBehavior.state = BottomSheetBehavior.STATE_HIDDEN
                 val location = Location("", cityName, Integer.parseInt(temperature), tempStatus!!)
                 addLocation(location)
             }
