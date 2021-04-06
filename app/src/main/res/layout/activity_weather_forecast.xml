@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/blue">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/weather_forecast"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_24" />
+        </androidx.appcompat.widget.Toolbar>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/margin_30">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_15"
+                android:text="@string/locations"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_24"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/addNewButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/margin_15"
+                android:text="@string/add_new"
+                android:textColor="@color/orange"
+                android:textSize="@dimen/text_size_22" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mainListView"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/list_height"
+                android:layout_below="@id/addNewButton"
+                android:layout_marginTop="@dimen/margin_10"
+                android:layoutAnimation="@anim/item_slide" />
+
+            <TextView
+                android:id="@+id/deleteInstructionText"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/mainListView"
+                android:layout_marginStart="@dimen/margin_15"
+                android:text="@string/delete_instructions"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_12" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/shade"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/primary_trans_65"
+        android:visibility="gone" />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:elevation="10dp"
+        android:indeterminateTint="@color/white"
+        android:visibility="gone" />
+
+    <include layout="@layout/input_form" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,28 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="addContainerHeight">200dp</dimen>
+
+    <dimen name="margin_5">5dp</dimen>
+    <dimen name="margin_10">10dp</dimen>
+    <dimen name="margin_15">15dp</dimen>
+    <dimen name="margin_20">20dp</dimen>
+    <dimen name="margin_25">25dp</dimen>
+    <dimen name="margin_30">30dp</dimen>
+
+    <dimen name="text_size_24">24sp</dimen>
+    <dimen name="text_size_22">22sp</dimen>
+    <dimen name="text_size_12">12sp</dimen>
+    <dimen name="text_size_18">18sp</dimen>
+    <dimen name="text_size_10">10sp</dimen>
+
+    <dimen name="text_input_height">60dp</dimen>
+    <dimen name="list_height">205dp</dimen>
+    <dimen name="list_width">165dp</dimen>
+    <dimen name="picker_height">120dp</dimen>
+    <dimen name="picker_item_width">75dp</dimen>
+
+    <dimen name="corner_radius_15">15dp</dimen>
+    <dimen name="corner_radius_10">10dp</dimen>
+
+
+</resources>

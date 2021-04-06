@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/inputForm"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    android:clickable="true"
+    android:focusable="true"
+    app:behavior_hideable="true"
+    app:behavior_skipCollapsed="true"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_20"
+        app:cardCornerRadius="@dimen/corner_radius_15"
+        app:cardElevation="5dp"
+        app:cardMaxElevation="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_30">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/cityInputHolder"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/text_input_height"
+                android:background="@drawable/edit_text_background"
+                android:hint="@string/location"
+                android:padding="@dimen/margin_10">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/cityInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:textSize="@dimen/text_size_18" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tempInputHolder"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/text_input_height"
+                android:layout_marginTop="@dimen/margin_15"
+                android:background="@drawable/edit_text_background"
+                android:hint="@string/temp_celsius"
+                android:padding="@dimen/margin_10"
+                android:textSize="@dimen/text_size_18">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tempInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:inputType="numberSigned"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/picker_height"
+                android:layout_marginTop="@dimen/margin_15"
+                app:cardCornerRadius="@dimen/corner_radius_10"
+                app:cardElevation="0dp">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/lightGray" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/weatherList"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/addLocationButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_15"
+                android:background="@drawable/button_background"
+                android:text="@string/add_new_location"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>
