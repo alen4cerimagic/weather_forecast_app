@@ -3,7 +3,8 @@ package com.codetest.main.api
 import com.codetest.main.KeyUtil
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonObject
-import io.reactivex.Observable
+import io.reactivex.Completable
+import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
@@ -11,7 +12,6 @@ import io.reactivex.schedulers.Schedulers
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
-import okhttp3.ResponseBody
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -19,13 +19,13 @@ import retrofit2.http.*
 
 interface LocationApi {
     @GET
-    fun get(@Url url: String): Observable<JsonObject>
+    fun get(@Url url: String): Single<JsonObject>
 
     @POST
-    fun post(@Url url: String, @Body body: JsonObject): Observable<JsonObject>
+    fun post(@Url url: String, @Body body: JsonObject): Single<JsonObject>
 
     @DELETE
-    fun delete(@Url url: String): Observable<ResponseBody>
+    fun delete(@Url url: String): Completable
 }
 
 class Interceptor : Interceptor {
@@ -64,7 +64,7 @@ class LocationApiService {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(
-                onNext = {
+                onSuccess = {
                     success(it)
                 },
                 onError = {
@@ -83,7 +83,7 @@ class LocationApiService {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(
-                onNext = {
+                onSuccess = {
                     success(it)
                 },
                 onError = {
@@ -92,13 +92,13 @@ class LocationApiService {
             ))
     }
 
-    fun delete(url: String, success: (ResponseBody) -> Unit, error: (Throwable?) -> Unit) {
+    fun delete(url: String, success: () -> Unit, error: (Throwable?) -> Unit) {
         compositeDisposable.add(api.delete(url)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(
-                onNext = {
-                    success(it)
+                onComplete = {
+                    success()
                 },
                 onError = {
                     error(it)

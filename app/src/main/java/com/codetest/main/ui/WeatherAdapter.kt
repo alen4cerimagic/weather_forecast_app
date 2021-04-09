@@ -27,7 +27,7 @@ class WeatherAdapter(private val onWeatherClickListener: OnWeatherClickListener)
         notifyDataSetChanged()
     }
 
-    fun selectItem(position: Int) : Status {
+    fun selectItem(position: Int): Status {
         for ((index, value) in list.withIndex()) {
             value.isSelected = index == position
         }

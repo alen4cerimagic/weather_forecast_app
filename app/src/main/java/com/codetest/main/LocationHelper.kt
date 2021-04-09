@@ -34,11 +34,11 @@ class LocationHelper {
 
         fun deleteLocation(
             locationId: String,
-            callback: (ResponseBody?) -> Unit,
+            callback: () -> Unit,
             error: (Int) -> Unit
         ) {
             LocationApiService.getApi().delete("locations/${locationId}", {
-                callback(it)
+                callback()
             }, {
                 error(getErrorMessage(it))
             })
