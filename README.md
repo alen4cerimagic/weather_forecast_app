@@ -23,7 +23,7 @@ Adapter for showing weather reports. Contains methods: submit list, add location
 Used to show different weather statuses on the report input form.
 
 ### main -> KeyUtil.kt
-Class for getting an api Key value from preferences. IMPROVEMENT: Write apiKey in singleton class on app opening and read from there.
+Class for creating a local request identifier and storing it in preferences.
 
 ### main -> LocationHelper.kt
 Contains methods for getting, adding, and deleting reports. Used to convert Json Objects into java objects, and getting error messages.

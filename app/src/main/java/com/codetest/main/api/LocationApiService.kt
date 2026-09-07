@@ -49,7 +49,7 @@ class LocationApiService {
 
     init {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://app-code-test.kry.pet/")
+            .baseUrl("https://weather-api.example.com/")
             .client(OkHttpClient().newBuilder().addInterceptor(Interceptor()).build())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create()))
